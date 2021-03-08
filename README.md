@@ -1,3 +1,11 @@
+### Favicon generator: https://www.favicon-generator.org/
+
+### PNG transparenncy creator: https://onlinepngtools.com/create-transparent-png
+
+### Logo creator: https://www.freelogoservices.com/es
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
