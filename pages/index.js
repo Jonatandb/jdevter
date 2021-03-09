@@ -2,12 +2,14 @@ import Head from 'next/head'
 import styles from './Index.module.css'
 import AppLayout from '../components/AppLayout/AppLayout'
 import { colors } from '../styles/theme'
+import Button from '../components/Button'
+import GitHub from '../components/Icons/GitHub'
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>JDevter 🐦</title>
+        <title>Jdevter 🐦</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
@@ -16,12 +18,24 @@ export default function Home() {
           <img src='/Jdevter_logo.png' alt='Jdevter main logo' />
           <h1>Jdevter</h1>
           <h2>Talk about development<br />with developers 👩🏻‍💻👨🏻‍💻</h2>
+
+          <div>
+            <Button>
+              <GitHub fill="#fff" width={24} height={24} />
+              Login with GitHub
+            </Button>
+          </div>
+
         </section>
       </AppLayout>
 
       <style jsx>{`
         img {
           width: 120px;
+        }
+
+        div {
+          margin-top: 16px;
         }
 
         section {

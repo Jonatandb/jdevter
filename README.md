@@ -1,3 +1,5 @@
+### Transform SVGs into React components: https://react-svgr.com/
+
 ### Favicon generator: https://www.favicon-generator.org/
 
 ### PNG transparenncy creator: https://onlinepngtools.com/create-transparent-png
