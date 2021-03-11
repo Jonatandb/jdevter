@@ -1,13 +1,14 @@
-import Head from "next/head"
-import styles from "./Index.module.css"
-import AppLayout from "../components/AppLayout/AppLayout"
-import { colors } from "../styles/theme"
-import Button from "../components/Button"
-import GitHub from "../components/Icons/GitHub"
+import { useEffect, useState } from 'react'
+import Head from 'next/head'
 
-import { loginWithGitHub, onAuthStateChanged } from "../firebase/client"
-import { useEffect, useState } from "react"
-import Avatar from "../components/Avatar"
+import AppLayout from 'components/AppLayout/AppLayout'
+import Avatar from 'components/Avatar'
+import Button from 'components/Button'
+import GitHub from 'components/Icons/GitHub'
+
+import { colors } from 'styles/theme'
+
+import { loginWithGitHub, onAuthStateChanged } from 'firebase/client'
 
 export default function Home() {
   const [user, setUser] = useState(null)
@@ -19,7 +20,7 @@ export default function Home() {
   const handleLogin = () => {
     loginWithGitHub()
       .then(setUser)
-      .catch((err) => {
+      .catch(err => {
         console.error(err.message)
       })
   }
@@ -28,12 +29,12 @@ export default function Home() {
     <>
       <Head>
         <title>Jdevter 🐦</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <AppLayout>
         <section>
-          <img src="/Jdevter_logo.png" alt="Jdevter main logo" />
+          <img src='/Jdevter_logo.png' alt='Jdevter main logo' />
           <h1>Jdevter</h1>
           <h2>
             Talk about development
@@ -44,7 +45,7 @@ export default function Home() {
           <div>
             {user === null && (
               <Button onClick={handleLogin}>
-                <GitHub fill="#fff" width={24} height={24} />
+                <GitHub fill='#fff' width={24} height={24} />
                 Login with GitHub
               </Button>
             )}
@@ -76,13 +77,13 @@ export default function Home() {
         }
 
         h1 {
-          color: ${colors.primary};
+          color: ${colors.secondary};
           font-weight: 800;
           margin-bottom: 16px;
         }
 
         h2 {
-          color: ${colors.secondary};
+          color: ${colors.primary};
           font-size: 21px;
           margin: 0;
         }

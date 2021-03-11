@@ -1,6 +1,6 @@
 import css from 'styled-jsx/css'
-import { breakpoints, fonts, colors } from '../../styles/theme'
-import { addOpacityColor } from '../../styles/utils'
+import { breakpoints, fonts, colors } from 'styles/theme'
+import { addOpacityColor } from 'styles/utils'
 
 const backgroundColor = addOpacityColor(colors.primary, 0.3)
 
