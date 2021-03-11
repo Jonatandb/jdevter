@@ -1,39 +1,36 @@
-import React from 'react'
-import { colors } from '../../styles/theme'
+import { colors } from "../../styles/theme"
 
 const Button = ({ children, onClick }) => {
-    return (
-        <>
-            <button onClick={onClick}>
-                {children}
-            </button>
+  return (
+    <>
+      <button onClick={onClick}>{children}</button>
+      <style jsx>
+        {`
+          button {
+            align-items: center;
+            background: ${colors.black};
+            border-radius: 9999px;
+            border: 0;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            font-size: 16px;
+            font-weight: 800;
+            padding: 8px 24px;
+            transition: opacity 0.3s ease;
+          }
 
-            <style jsx>{`
-                button {
-                    align-items: center;
-                    background: ${colors.black};
-                    border-radius: 9999px;
-                    border: 0;
-                    color: #fff;
-                    cursor: pointer;
-                    display: flex;
-                    font-size: 16px;
-                    font-weight: 800;
-                    padding: 8px 24px;
-                    transition: opacity .3s ease;
-                }
+          button:hover {
+            opacity: 0.7;
+          }
 
-                button:hover {
-                    opacity: .7;
-                }
-
-                button > :global(svg) {
-                    margin-right: 8px
-                }
-            `}
-            </style>
-        </>
-    )
+          button > :global(svg) {
+            margin-right: 8px;
+          }
+        `}
+      </style>
+    </>
+  )
 }
 
 export default Button

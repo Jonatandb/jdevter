@@ -34,27 +34,26 @@ export default function Home() {
         <section>
           <img src='/Jdevter_logo.png' alt='Jdevter main logo' />
           <h1>Jdevter</h1>
-          <h2>Talk about development<br />with developers 👩🏻‍💻👨🏻‍💻</h2>
+          <h2>
+            Talk about development
+            <br />
+            with developers 👩🏻‍💻👨🏻‍💻
+          </h2>
 
           <div>
-            {
-              user === null && (
-                <Button onClick={handleLogin}>
-                  <GitHub fill="#fff" width={24} height={24} />
-                  Login with GitHub
-                </Button>
-              )
-            }
-            {
-              user && user.avatar && (
-                <div>
-                  <img src={user.avatar} />
-                  <strong>{user.username}</strong>
-                </div>
-              )
-            }
+            {user === null && (
+              <Button onClick={handleLogin}>
+                <GitHub fill='#fff' width={24} height={24} />
+                Login with GitHub
+              </Button>
+            )}
+            {user && user.avatar && (
+              <div>
+                <img src={user.avatar} />
+                <strong>{user.username}</strong>
+              </div>
+            )}
           </div>
-
         </section>
       </AppLayout>
 
@@ -86,7 +85,6 @@ export default function Home() {
           margin: 0;
         }
       }`}</style>
-
     </>
   )
 }
