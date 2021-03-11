@@ -1,12 +1,13 @@
-import Head from 'next/head'
-import styles from './Index.module.css'
-import AppLayout from '../components/AppLayout/AppLayout'
-import { colors } from '../styles/theme'
-import Button from '../components/Button'
-import GitHub from '../components/Icons/GitHub'
+import Head from "next/head"
+import styles from "./Index.module.css"
+import AppLayout from "../components/AppLayout/AppLayout"
+import { colors } from "../styles/theme"
+import Button from "../components/Button"
+import GitHub from "../components/Icons/GitHub"
 
-import { loginWithGitHub, onAuthStateChanged } from '../firebase/client'
-import { useEffect, useState } from 'react'
+import { loginWithGitHub, onAuthStateChanged } from "../firebase/client"
+import { useEffect, useState } from "react"
+import Avatar from "../components/Avatar"
 
 export default function Home() {
   const [user, setUser] = useState(null)
@@ -18,7 +19,7 @@ export default function Home() {
   const handleLogin = () => {
     loginWithGitHub()
       .then(setUser)
-      .catch(err => {
+      .catch((err) => {
         console.error(err.message)
       })
   }
@@ -27,12 +28,12 @@ export default function Home() {
     <>
       <Head>
         <title>Jdevter 🐦</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <AppLayout>
         <section>
-          <img src='/Jdevter_logo.png' alt='Jdevter main logo' />
+          <img src="/Jdevter_logo.png" alt="Jdevter main logo" />
           <h1>Jdevter</h1>
           <h2>
             Talk about development
@@ -43,15 +44,16 @@ export default function Home() {
           <div>
             {user === null && (
               <Button onClick={handleLogin}>
-                <GitHub fill='#fff' width={24} height={24} />
+                <GitHub fill="#fff" width={24} height={24} />
                 Login with GitHub
               </Button>
             )}
             {user && user.avatar && (
-              <div>
-                <img src={user.avatar} />
-                <strong>{user.username}</strong>
-              </div>
+              <Avatar
+                src={user.avatar}
+                alt={user.username}
+                text={user.username}
+              />
             )}
           </div>
         </section>
