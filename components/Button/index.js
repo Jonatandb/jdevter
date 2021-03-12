@@ -18,6 +18,7 @@ const Button = ({ children, onClick }) => {
             font-weight: 800;
             padding: 8px 24px;
             transition: opacity 0.3s ease;
+            user-select: none;
           }
 
           button:hover {

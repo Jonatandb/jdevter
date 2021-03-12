@@ -1,3 +1,5 @@
+### Spinners by: https://loading.io/css and http://www.ajaxload.info/ and http://ajaxloadingimages.net/
+
 ### Transform SVGs into React components: https://react-svgr.com/
 
 ### Favicon generator: https://www.favicon-generator.org/

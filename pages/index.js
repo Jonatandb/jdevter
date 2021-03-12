@@ -1,28 +1,37 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-import AppLayout from 'components/AppLayout/AppLayout'
-import Avatar from 'components/Avatar'
+import AppLayout from 'components/AppLayout'
 import Button from 'components/Button'
 import GitHub from 'components/Icons/GitHub'
+import Logo from 'components/Logo'
 
 import { colors } from 'styles/theme'
 
 import { loginWithGitHub, onAuthStateChanged } from 'firebase/client'
 
+const USER_STATES = {
+  NOT_LOGGED: null,
+  NOT_KNOWN: undefined,
+}
+
 export default function Home() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(USER_STATES.NOT_KNOWN)
+  const router = useRouter()
 
   useEffect(() => {
     onAuthStateChanged(setUser)
   }, [])
 
-  const handleLogin = () => {
-    loginWithGitHub()
-      .then(setUser)
-      .catch(err => {
-        console.error(err.message)
-      })
+  useEffect(() => {
+    user && router.replace('/home')
+  }, [user])
+
+  const handleClick = () => {
+    loginWithGitHub().catch(err => {
+      console.error(err.message)
+    })
   }
 
   return (
@@ -34,7 +43,7 @@ export default function Home() {
 
       <AppLayout>
         <section>
-          <img src='/Jdevter_logo.png' alt='Jdevter main logo' />
+          <Logo width={100} />
           <h1>Jdevter</h1>
           <h2>
             Talk about development
@@ -43,26 +52,20 @@ export default function Home() {
           </h2>
 
           <div>
-            {user === null && (
-              <Button onClick={handleLogin}>
+            {user === USER_STATES.NOT_LOGGED && (
+              <Button onClick={handleClick}>
                 <GitHub fill='#fff' width={24} height={24} />
                 Login with GitHub
               </Button>
             )}
-            {user && user.avatar && (
-              <Avatar
-                src={user.avatar}
-                alt={user.username}
-                text={user.username}
-              />
-            )}
+            {user === USER_STATES.NOT_KNOWN && <img src='/spinner.gif' />}
           </div>
         </section>
       </AppLayout>
 
       <style jsx>{`
         img {
-          width: 120px;
+          width: 20px;
         }
 
         div {
