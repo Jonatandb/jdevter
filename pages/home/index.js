@@ -6,7 +6,7 @@ export default function HomePage() {
   const [timeline, setTimeline] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/statuses/home_timeline')
+    fetch('/api/statuses/home_timeline')
       .then(res => res.json())
       .then(setTimeline)
   }, [])
