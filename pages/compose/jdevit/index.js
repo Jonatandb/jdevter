@@ -34,7 +34,7 @@ export default function ComposeJdevit() {
       userName: user.username,
     })
       .then(res => {
-        router.push('/')
+        router.push('/home')
       })
       .catch(err => {
         console.error(err)
