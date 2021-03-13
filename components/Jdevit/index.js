@@ -1,15 +1,28 @@
 import Avatar from 'components/Avatar'
 
-export default function Jdevit({ id, username, avatar, message }) {
+export default function Jdevit({
+  avatar,
+  content,
+  createdAt,
+  id,
+  likesCount,
+  sharedCount,
+  userId,
+  userName,
+}) {
   return (
     <>
       <article>
         <div>
-          <Avatar alt={username} src={avatar} />
+          <Avatar alt={userName} src={avatar} />
         </div>
         <section>
-          <strong>{username}</strong>
-          <p>{message}</p>
+          <header>
+            <strong>{userName}</strong>
+            <span> · </span>
+            <time dateTime={createdAt}>{createdAt}</time>
+          </header>
+          <p>{content}</p>
         </section>
       </article>
       <style jsx>{`
@@ -26,6 +39,11 @@ export default function Jdevit({ id, username, avatar, message }) {
         p {
           line-height: 1.3125;
           margin: 0;
+        }
+
+        time {
+          color: #555;
+          font-size: 14px;
         }
       `}</style>
     </>

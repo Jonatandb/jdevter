@@ -3,10 +3,21 @@ import { useState } from 'react'
 import AppLayout from 'components/AppLayout'
 import Button from 'components/Button'
 import useUser from 'hooks/useUser'
+import { addJdevit } from 'firebase/client'
+import { useRouter } from 'next/router'
+
+const COMPOSE_STATES = {
+  USER_NOT_KNOW: 0,
+  LOADING: 1,
+  SUCCESS: 2,
+  ERROR: -1,
+}
 
 export default function ComposeJdevit() {
   const [message, setMessage] = useState('')
-  useUser()
+  const [status, setStatus] = useState(COMPOSE_STATES.USER_NOT_KNOW)
+  const router = useRouter()
+  const user = useUser()
 
   const handleChange = event => {
     const { value } = event.target
@@ -15,8 +26,24 @@ export default function ComposeJdevit() {
 
   const handleSumbit = event => {
     event.preventDefault()
-    alert('Enviando mensaje: ' + message)
+    setStatus(COMPOSE_STATES.LOADING)
+    addJdevit({
+      avatar: user.avatar,
+      content: message,
+      userId: user.uid,
+      userName: user.username,
+    })
+      .then(res => {
+        router.push('/')
+      })
+      .catch(err => {
+        console.error(err)
+        setStatus(COMPOSE_STATES.ERROR)
+      })
   }
+
+  const isButtonDisabled =
+    !message.trim().length || status === COMPOSE_STATES.LOADING
 
   return (
     <>
@@ -28,7 +55,7 @@ export default function ComposeJdevit() {
             onChange={handleChange}
           ></textarea>
           <div>
-            <Button disabled={!message.trim().length}>Devitear</Button>
+            <Button disabled={isButtonDisabled}>Devitear</Button>
           </div>
         </form>
       </AppLayout>

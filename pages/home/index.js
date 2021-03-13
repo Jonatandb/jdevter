@@ -1,5 +1,6 @@
 import AppLayout from 'components/AppLayout'
 import Jdevit from 'components/Jdevit'
+import { getLatestJdevits } from 'firebase/client'
 import useUser from 'hooks/useUser'
 import { useEffect, useState } from 'react'
 
@@ -8,10 +9,7 @@ export default function HomePage() {
   const user = useUser()
 
   useEffect(() => {
-    user &&
-      fetch('/api/statuses/home_timeline')
-        .then(res => res.json())
-        .then(setTimeline)
+    user && getLatestJdevits().then(setTimeline)
   }, [user])
 
   return (
@@ -21,17 +19,32 @@ export default function HomePage() {
           <h2>Inicio</h2>
         </header>
         <section>
-          {timeline.map(({ id, username, avatar, message }) => {
-            return (
-              <Jdevit
-                avatar={avatar}
-                id={id}
-                key={id}
-                message={message}
-                username={username}
-              />
-            )
-          })}
+          {timeline.map(
+            ({
+              avatar,
+              content,
+              createdAt,
+              id,
+              likesCount,
+              sharedCount,
+              userId,
+              userName,
+            }) => {
+              return (
+                <Jdevit
+                  avatar={avatar}
+                  content={content}
+                  createdAt={createdAt}
+                  id={id}
+                  key={id}
+                  likesCount={likesCount}
+                  sharedCount={sharedCount}
+                  userId={userId}
+                  userName={userName}
+                />
+              )
+            }
+          )}
         </section>
         <nav></nav>
       </AppLayout>

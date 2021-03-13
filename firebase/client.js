@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA5K3WuKaGIA4vnYPDFyvx0uPvF-KrAMJI',
@@ -12,13 +13,16 @@ const firebaseConfig = {
 
 !firebase.apps.length && firebase.initializeApp(firebaseConfig)
 
+const db = firebase.firestore()
+
 const mapUserFromFirebaseAuth = user => {
-  const { displayName, email, photoURL } = user
+  const { displayName, email, photoURL, uid } = user
 
   return {
     avatar: photoURL,
     username: displayName,
     email,
+    uid,
   }
 }
 
@@ -32,4 +36,46 @@ export const onAuthStateChanged = onChange => {
 export const loginWithGitHub = () => {
   const githubProvider = new firebase.auth.GithubAuthProvider()
   return firebase.auth().signInWithPopup(githubProvider)
+}
+
+export const addJdevit = ({ avatar, content, userId, userName }) => {
+  return db.collection('devits').add({
+    avatar,
+    userName,
+    userId,
+    content,
+    createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+    likesCount: 0,
+    sharedCount: 0,
+  })
+}
+
+export const getLatestJdevits = () => {
+  return db
+    .collection('devits')
+    .get()
+    .then(({ docs }) => {
+      return docs.map(doc => {
+        const data = doc.data()
+        const id = doc.id
+        const { createdAt } = data
+        const options = {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          hour12: false,
+          timeZone: 'America/Argentina/Buenos_Aires',
+        }
+        const intl = Intl.DateTimeFormat('es-AR', options)
+        const normalizedCreatedAt = intl.format(createdAt.toDate())
+        return {
+          id,
+          ...data,
+          createdAt: normalizedCreatedAt,
+        }
+      })
+    })
 }
