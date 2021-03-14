@@ -53,6 +53,7 @@ export const addJdevit = ({ avatar, content, userId, userName }) => {
 export const getLatestJdevits = () => {
   return db
     .collection('devits')
+    .orderBy('createdAt', 'desc')
     .get()
     .then(({ docs }) => {
       return docs.map(doc => {
