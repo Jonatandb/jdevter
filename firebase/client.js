@@ -59,22 +59,11 @@ export const getLatestJdevits = () => {
         const data = doc.data()
         const id = doc.id
         const { createdAt } = data
-        const options = {
-          year: 'numeric',
-          month: 'numeric',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-          second: 'numeric',
-          hour12: false,
-          timeZone: 'America/Argentina/Buenos_Aires',
-        }
-        const intl = Intl.DateTimeFormat('es-AR', options)
-        const normalizedCreatedAt = intl.format(createdAt.toDate())
+
         return {
           id,
           ...data,
-          createdAt: normalizedCreatedAt,
+          createdAt: +createdAt.toDate(),
         }
       })
     })

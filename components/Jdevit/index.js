@@ -1,4 +1,5 @@
 import Avatar from 'components/Avatar'
+import useTimeAgo from 'hooks/useTimeAgo'
 
 export default function Jdevit({
   avatar,
@@ -10,6 +11,8 @@ export default function Jdevit({
   userId,
   userName,
 }) {
+  const timeago = useTimeAgo(createdAt)
+
   return (
     <>
       <article>
@@ -20,7 +23,7 @@ export default function Jdevit({
           <header>
             <strong>{userName}</strong>
             <span> · </span>
-            <time dateTime={createdAt}>{createdAt}</time>
+            <time dateTime={timeago}>{timeago}</time>
           </header>
           <p>{content}</p>
         </section>
