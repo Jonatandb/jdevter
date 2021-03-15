@@ -5,6 +5,7 @@ import Button from 'components/Button'
 import useUser from 'hooks/useUser'
 import { addJdevit } from 'firebase/client'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 const COMPOSE_STATES = {
   USER_NOT_KNOW: 0,
@@ -48,6 +49,9 @@ export default function ComposeJdevit() {
   return (
     <>
       <AppLayout>
+        <Head>
+          <title>Create a Jdevit / Jdevter 🐦</title>
+        </Head>
         <form onSubmit={handleSumbit}>
           <textarea
             placeholder='¿Qué está pasando?'
