@@ -1,16 +1,38 @@
-### System UIcons - Free svg UI icons: https://systemuicons.com/
-
-### Spinners by: https://loading.io/css and http://www.ajaxload.info/ and http://ajaxloadingimages.net/
-
-### Transform SVGs into React components: https://react-svgr.com/
-
-### Favicon generator: https://www.favicon-generator.org/
-
-### PNG transparenncy creator: https://onlinepngtools.com/create-transparent-png
-
-### Logo creator: https://www.freelogoservices.com/es
+Proyecto creado siguiendo esta serie de videos -> [🔥 Curso gratuito de Next.js y Firebase](https://midu.dev/curso-gratis-react-2020/) ([Lista en Youtube](https://www.youtube.com/playlist?list=PLV8x_i1fqBw1VR86y4C72xMGJ8ifjBwJ6)), de este grande del desarrollo frontend -> **Midudev** (Miguel Ángel Durán: [Blog](https://midu.dev/), [Youtube](https://www.youtube.com/channel/UC8LeXCWOalN8SxlrPcG-PaQ), [Twitter](https://twitter.com/midudev), [Instagram](https://www.instagram.com/midu.dev/))
 
 ---
+
+# Jdevter 🐦 - Acerca de este proyecto:
+
+Se trata de un clone de Twitter creado utilizando [NetxJs](https://nextjs.org/) y [Firebase](https://firebase.google.com/).
+
+<p align="center">
+    <a href="https://github.com/jonatandb/jdevter">
+        <img src="Timeline_Screenshot.png" alt="Jdevter | Twitter clone by Jonatandb"/>
+    </a>
+</p>
+
+---
+
+
+### Visited sites / resources:
+
+System UIcons - Free svg UI icons: https://systemuicons.com/
+
+Spinners by: https://loading.io/css and http://www.ajaxload.info/ and http://ajaxloadingimages.net/
+
+Transform SVGs into React components: https://react-svgr.com/
+
+Favicon generator: https://www.favicon-generator.org/
+
+PNG transparenncy creator: https://onlinepngtools.com/create-transparent-png
+
+Logo creator: https://www.freelogoservices.com/es
+
+---
+---
+---
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

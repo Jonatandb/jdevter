@@ -25,7 +25,7 @@ export default function Jdevit({
         <section>
           <header>
             <strong>{userName}</strong>
-            <span> · </span>
+            <span>·</span>
             <time title={createdAtFormated} dateTime={createdAtFormated}>
               {timeago}
             </time>
@@ -55,6 +55,10 @@ export default function Jdevit({
         p {
           line-height: 1.3125;
           margin: 0;
+        }
+
+        span {
+          margin: 0 5px;
         }
 
         time {
