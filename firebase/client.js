@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA5K3WuKaGIA4vnYPDFyvx0uPvF-KrAMJI',
@@ -38,7 +39,7 @@ export const loginWithGitHub = () => {
   return firebase.auth().signInWithPopup(githubProvider)
 }
 
-export const addJdevit = ({ avatar, content, userId, userName }) => {
+export const addJdevit = ({ avatar, content, userId, userName, img }) => {
   return db.collection('devits').add({
     avatar,
     userName,
@@ -47,6 +48,7 @@ export const addJdevit = ({ avatar, content, userId, userName }) => {
     createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
     likesCount: 0,
     sharedCount: 0,
+    img,
   })
 }
 
@@ -68,4 +70,10 @@ export const getLatestJdevits = () => {
         }
       })
     })
+}
+
+export const uploadImg = file => {
+  const ref = firebase.storage().ref(`images/${file.name}`)
+  const task = ref.put(file)
+  return task
 }

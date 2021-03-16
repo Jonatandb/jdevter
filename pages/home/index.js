@@ -40,6 +40,7 @@ export default function HomePage() {
               sharedCount,
               userId,
               userName,
+              img,
             }) => {
               return (
                 <Jdevit
@@ -52,6 +53,7 @@ export default function HomePage() {
                   sharedCount={sharedCount}
                   userId={userId}
                   userName={userName}
+                  img={img}
                 />
               )
             }

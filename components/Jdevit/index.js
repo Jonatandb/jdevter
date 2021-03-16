@@ -10,6 +10,7 @@ export default function Jdevit({
   sharedCount,
   userId,
   userName,
+  img,
 }) {
   const timeago = useTimeAgo(createdAt)
 
@@ -26,6 +27,7 @@ export default function Jdevit({
             <time dateTime={timeago}>{timeago}</time>
           </header>
           <p>{content}</p>
+          {img && <img src={img} />}
         </section>
       </article>
       <style jsx>{`
@@ -33,6 +35,13 @@ export default function Jdevit({
           border-bottom: 1px solid #eee;
           display: flex;
           padding: 10px 15px;
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 10px;
+          margin-top: 10px;
         }
 
         div {
