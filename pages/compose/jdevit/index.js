@@ -57,7 +57,7 @@ export default function ComposeJdevit() {
       content: message,
       userId: user.uid,
       userName: user.username,
-      img: imgURL,
+      img: imgURL ?? '',
     })
       .then(res => {
         router.push('/home')

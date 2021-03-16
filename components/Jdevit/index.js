@@ -1,5 +1,6 @@
 import Avatar from 'components/Avatar'
 import useTimeAgo from 'hooks/useTimeAgo'
+import useDateTimeFormat from 'hooks/useDateTimeFormat'
 
 export default function Jdevit({
   avatar,
@@ -13,6 +14,7 @@ export default function Jdevit({
   img,
 }) {
   const timeago = useTimeAgo(createdAt)
+  const createdAtFormated = useDateTimeFormat(createdAt)
 
   return (
     <>
@@ -24,7 +26,9 @@ export default function Jdevit({
           <header>
             <strong>{userName}</strong>
             <span> · </span>
-            <time dateTime={timeago}>{timeago}</time>
+            <time title={createdAtFormated} dateTime={createdAtFormated}>
+              {timeago}
+            </time>
           </header>
           <p>{content}</p>
           {img && <img src={img} />}
