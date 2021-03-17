@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-
-import AppLayout from 'components/AppLayout'
-import Button from 'components/Button'
-import useUser from 'hooks/useUser'
 import { addJdevit, uploadImg } from 'firebase/client'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+
+import Button from 'components/Button'
 import Avatar from 'components/Avatar'
+
+import useUser from 'hooks/useUser'
 
 const COMPOSE_STATES = {
   USER_NOT_KNOW: 0,
@@ -91,37 +91,35 @@ export default function ComposeJdevit() {
 
   return (
     <>
-      <AppLayout>
-        <Head>
-          <title>Create a Jdevit / Jdevter 🐦</title>
-        </Head>
-        <section className='form-container'>
-          {user && (
-            <section className='avatar-container'>
-              <Avatar src={user.avatar} />{' '}
+      <Head>
+        <title>Create a Jdevit / Jdevter 🐦</title>
+      </Head>
+      <section className='form-container'>
+        {user && (
+          <section className='avatar-container'>
+            <Avatar src={user.avatar} />{' '}
+          </section>
+        )}
+        <form onSubmit={handleSumbit}>
+          <textarea
+            placeholder='¿Qué está pasando?'
+            value={message}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onChange={handleChange}
+          ></textarea>
+          {imgURL && (
+            <section className='remove-img'>
+              <button onClick={() => setImgURL()}>x</button>
+              <img src={imgURL} />
             </section>
           )}
-          <form onSubmit={handleSumbit}>
-            <textarea
-              placeholder='¿Qué está pasando?'
-              value={message}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              onChange={handleChange}
-            ></textarea>
-            {imgURL && (
-              <section className='remove-img'>
-                <button onClick={() => setImgURL()}>x</button>
-                <img src={imgURL} />
-              </section>
-            )}
-            <div>
-              <Button disabled={isButtonDisabled}>Devitear</Button>
-            </div>
-          </form>
-        </section>
-      </AppLayout>
+          <div>
+            <Button disabled={isButtonDisabled}>Devitear</Button>
+          </div>
+        </form>
+      </section>
       <style jsx>{`
         div {
           padding: 15px;

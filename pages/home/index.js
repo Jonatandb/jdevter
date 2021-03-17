@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-
-import AppLayout from 'components/AppLayout'
-import Jdevit from 'components/Jdevit'
-import useUser from 'hooks/useUser'
-
+import Head from 'next/head'
 import { getLatestJdevits } from 'firebase/client'
+
+import Jdevit from 'components/Jdevit'
 import Create from 'components/Icons/Create'
+import useUser from 'hooks/useUser'
 import Home from 'components/Icons/Home'
 import Search from 'components/Icons/Search'
+
 import { colors } from 'styles/theme'
-import Head from 'next/head'
 
 export default function HomePage() {
   const [timeline, setTimeline] = useState([])
@@ -22,61 +21,59 @@ export default function HomePage() {
 
   return (
     <>
-      <AppLayout>
-        <Head>
-          <title>Home / Jdevter 🐦</title>
-        </Head>
-        <header>
-          <h2>Home</h2>
-        </header>
-        <section>
-          {timeline.map(
-            ({
-              avatar,
-              content,
-              createdAt,
-              id,
-              likesCount,
-              sharedCount,
-              userId,
-              userName,
-              img,
-            }) => {
-              return (
-                <Jdevit
-                  avatar={avatar}
-                  content={content}
-                  createdAt={createdAt}
-                  id={id}
-                  key={id}
-                  likesCount={likesCount}
-                  sharedCount={sharedCount}
-                  userId={userId}
-                  userName={userName}
-                  img={img}
-                />
-              )
-            }
-          )}
-        </section>
-        <nav>
-          <Link href='/home'>
-            <a>
-              <Home width={32} height={32} stroke='#09f' />
-            </a>
-          </Link>
-          <Link href='search'>
-            <a>
-              <Search width={32} height={32} stroke='#09f' />
-            </a>
-          </Link>
-          <Link href='compose/jdevit'>
-            <a>
-              <Create width={32} height={32} stroke='#09f' />
-            </a>
-          </Link>
-        </nav>
-      </AppLayout>
+      <Head>
+        <title>Home / Jdevter 🐦</title>
+      </Head>
+      <header>
+        <h2>Home</h2>
+      </header>
+      <section>
+        {timeline.map(
+          ({
+            avatar,
+            content,
+            createdAt,
+            id,
+            likesCount,
+            sharedCount,
+            userId,
+            userName,
+            img,
+          }) => {
+            return (
+              <Jdevit
+                avatar={avatar}
+                content={content}
+                createdAt={createdAt}
+                id={id}
+                key={id}
+                likesCount={likesCount}
+                sharedCount={sharedCount}
+                userId={userId}
+                userName={userName}
+                img={img}
+              />
+            )
+          }
+        )}
+      </section>
+      <nav>
+        <Link href='/home'>
+          <a>
+            <Home width={32} height={32} stroke='#09f' />
+          </a>
+        </Link>
+        <Link href='search'>
+          <a>
+            <Search width={32} height={32} stroke='#09f' />
+          </a>
+        </Link>
+        <Link href='compose/jdevit'>
+          <a>
+            <Create width={32} height={32} stroke='#09f' />
+          </a>
+        </Link>
+      </nav>
       <style jsx>{`
         header {
           align-items: center;
