@@ -1,6 +1,8 @@
 import Avatar from 'components/Avatar'
 import useTimeAgo from 'hooks/useTimeAgo'
 import useDateTimeFormat from 'hooks/useDateTimeFormat'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export default function Jdevit({
   avatar,
@@ -15,10 +17,16 @@ export default function Jdevit({
 }) {
   const timeago = useTimeAgo(createdAt)
   const createdAtFormated = useDateTimeFormat(createdAt)
+  const router = useRouter()
+
+  const handleArticleClick = e => {
+    e.preventDefault()
+    router.push(`status/${id}`)
+  }
 
   return (
     <>
-      <article>
+      <article onClick={handleArticleClick}>
         <div>
           <Avatar alt={userName} src={avatar} />
         </div>
@@ -26,9 +34,13 @@ export default function Jdevit({
           <header>
             <strong>{userName}</strong>
             <span>·</span>
-            <time title={createdAtFormated} dateTime={createdAtFormated}>
-              {timeago}
-            </time>
+            <Link href={`/status/${id}`}>
+              <a>
+                <time title={createdAtFormated} dateTime={createdAtFormated}>
+                  {timeago}
+                </time>
+              </a>
+            </Link>
           </header>
           <p>{content}</p>
           {img && <img src={img} />}
@@ -39,6 +51,11 @@ export default function Jdevit({
           border-bottom: 1px solid #eee;
           display: flex;
           padding: 10px 15px;
+        }
+
+        article:hover {
+          background: #f5f8fa;
+          cursor: pointer;
         }
 
         img {
