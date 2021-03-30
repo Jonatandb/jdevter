@@ -78,9 +78,14 @@ export default function Jdevit({
           margin: 0 5px;
         }
 
-        time {
+        a {
           color: #555;
           font-size: 14px;
+          text-decoration: none;
+        }
+
+        a:hover {
+          text-decoration: underline;
         }
       `}</style>
     </>
