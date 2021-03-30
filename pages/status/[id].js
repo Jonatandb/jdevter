@@ -8,7 +8,12 @@ JdevitPage.getInitialProps = context => {
   const { query, res } = context
   const { id } = query
 
-  const url = `http://localhost:3000/api/jdevit/${id}\n`
+  const host =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000/'
+      : process.env.NEXT_PUBLIC_URL
+
+  const url = `${host}api/jdevit/${id}\n`
 
   return fetch(url).then(apiResponse => {
     if (apiResponse.ok) return apiResponse.json()
