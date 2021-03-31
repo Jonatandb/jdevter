@@ -1,9 +1,9 @@
 import { DEFAULT_LANGUAGE } from 'constants/locale'
 
-const isDateTimeFormartSupported =
+const isDateTimeFormatSupported =
   typeof Intl !== 'undefined' && Intl.DateTimeFormat
 
-const formatDate = (timestamp, { language = DEFAULT_LANGUAGE }) => {
+export const formatDate = (timestamp, { language = DEFAULT_LANGUAGE } = {}) => {
   const date = new Date(timestamp)
 
   const options = {
@@ -15,7 +15,7 @@ const formatDate = (timestamp, { language = DEFAULT_LANGUAGE }) => {
     second: 'numeric',
   }
 
-  if (!isDateTimeFormartSupported) {
+  if (!isDateTimeFormatSupported) {
     return date.toLocaleDateString(language, options)
   }
 
