@@ -64,15 +64,28 @@ const mapJdevitFromFirebaseToJdevitObject = doc => {
   }
 }
 
-export const getLatestJdevits = () => {
-  return db
-    .collection('devits')
-    .orderBy('createdAt', 'desc')
-    .get()
-    .then(({ docs }) => {
-      return docs.map(mapJdevitFromFirebaseToJdevitObject)
-    })
+export const listenLastestJdevits = handleNewJdevits => {
+  return (
+    db
+      .collection('devits')
+      .orderBy('createdAt', 'desc')
+      // .limit(100)
+      .onSnapshot(({ docs }) => {
+        const newJdevits = docs.map(mapJdevitFromFirebaseToJdevitObject)
+        handleNewJdevits(newJdevits)
+      })
+  )
 }
+
+// export const getLatestJdevits = () => {
+//   return db
+//     .collection('devits')
+//     .orderBy('createdAt', 'desc')
+//     .get()
+//     .then(({ docs }) => {
+//       return docs.map(mapJdevitFromFirebaseToJdevitObject)
+//     })
+// }
 
 export const uploadImg = file => {
   const ref = firebase.storage().ref(`images/${file.name}`)

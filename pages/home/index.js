@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import { getLatestJdevits } from 'firebase/client'
+import { listenLastestJdevits } from 'firebase/client'
 
 import Jdevit from 'components/Jdevit'
 import Create from 'components/Icons/Create'
@@ -16,7 +16,12 @@ export default function HomePage() {
   const user = useUser()
 
   useEffect(() => {
-    user && getLatestJdevits().then(setTimeline)
+    let unsubscribe
+    if (user) {
+      unsubscribe = listenLastestJdevits(setTimeline)
+    }
+
+    return () => unsubscribe && unsubscribe()
   }, [user])
 
   return (
