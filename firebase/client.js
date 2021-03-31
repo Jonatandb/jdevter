@@ -52,23 +52,25 @@ export const addJdevit = ({ avatar, content, userId, userName, img }) => {
   })
 }
 
+const mapJdevitFromFirebaseToJdevitObject = doc => {
+  const data = doc.data()
+  const id = doc.id
+  const { createdAt } = data
+
+  return {
+    id,
+    ...data,
+    createdAt: +createdAt.toDate(),
+  }
+}
+
 export const getLatestJdevits = () => {
   return db
     .collection('devits')
     .orderBy('createdAt', 'desc')
     .get()
     .then(({ docs }) => {
-      return docs.map(doc => {
-        const data = doc.data()
-        const id = doc.id
-        const { createdAt } = data
-
-        return {
-          id,
-          ...data,
-          createdAt: +createdAt.toDate(),
-        }
-      })
+      return docs.map(mapJdevitFromFirebaseToJdevitObject)
     })
 }
 
