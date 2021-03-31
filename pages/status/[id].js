@@ -7,12 +7,8 @@ export default function JdevitPage(props) {
 export async function getServerSideProps(context) {
   const { params, res } = context
   const { id } = params
-  const host =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000/'
-      : process.env.NEXT_PUBLIC_URL
+  const host = process.env.NEXT_PUBLIC_URL
   const url = `${host}api/jdevit/${id}\n`
-
   const apiResponse = await fetch(url)
 
   if (apiResponse.ok) {
@@ -21,6 +17,7 @@ export async function getServerSideProps(context) {
       props,
     }
   }
+
   if (res) {
     res.writeHead(301, { Location: '/home' }).end()
   }
