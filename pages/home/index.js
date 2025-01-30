@@ -64,19 +64,13 @@ export default function HomePage() {
       </section>
       <nav>
         <Link href='/home'>
-          <a>
-            <Home width={32} height={32} stroke='#09f' />
-          </a>
+          <Home width={32} height={32} stroke='#09f' />
         </Link>
         <Link href='search'>
-          <a>
-            <Search width={32} height={32} stroke='#09f' />
-          </a>
+          <Search width={32} height={32} stroke='#09f' />
         </Link>
         <Link href='compose/jdevit'>
-          <a>
-            <Create width={32} height={32} stroke='#09f' />
-          </a>
+          <Create width={32} height={32} stroke='#09f' />
         </Link>
       </nav>
       <style jsx>{`

@@ -35,11 +35,9 @@ export default function Jdevit({
             <strong>{userName}</strong>
             <span>·</span>
             <Link href={`/status/${id}`}>
-              <a>
-                <time title={createdAtFormated} dateTime={createdAtFormated}>
-                  {timeago}
-                </time>
-              </a>
+              <time title={createdAtFormated} dateTime={createdAtFormated}>
+                {timeago}
+              </time>
             </Link>
           </header>
           <p>{content}</p>

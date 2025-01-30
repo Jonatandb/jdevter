@@ -46,5 +46,10 @@ export default function useTimeAgo(timestamp) {
 
   const { value, unit } = timeago
 
-  return rtf.format(value, unit)
+  if (isFinite(value)) {
+    return rtf.format(value, unit);
+  } else {
+    console.log(`useTimeAgo -> Invalid value: ${value}`);
+    return `Date error: ${value}`;
+  }
 }
